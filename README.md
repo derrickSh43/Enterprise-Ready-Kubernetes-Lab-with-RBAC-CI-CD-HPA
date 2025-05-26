@@ -118,5 +118,5 @@ All configurations are preserved and can be replayed locally or in the cloud.
 Cloud Engineer | DevSecOps | Terraform | Kubernetes  
 [GitHub Profile](https://github.com/derrickSh43)  
 [LinkedIn](https://www.linkedin.com/in/derrickweil/)
-```
+
 
