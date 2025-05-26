@@ -1,0 +1,101 @@
+# === Terraform ===
+*.tfstate
+*.tfstate.backup
+terraform.tfvars
+*.tfvars.json
+.terraform/
+.crash/
+*.log
+
+# === GCP Service Accounts ===
+credentials.json
+terraform-sa-key.json
+*.json
+
+# === Python (locust, popeye, scripts) ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.env.*
+
+# === Helm Charts Build Files ===
+charts/**/Chart.lock
+charts/**/charts/
+charts/**/tmp/
+charts/**/.helmignore
+
+# === Kubernetes YAML logs, dumps ===
+*.out
+*.log
+*.bak
+*.swp
+*.tmp
+*~ 
+*.old
+
+# === IDEs and Editors ===
+.vscode/
+.idea/
+*.iml
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# === OS-level ===
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# === Output / Export files ===
+*.zip
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.bak
+*.backup
+*.tar
+*.tmp
+*.old
+*.orig
+*.save
+
+# === Generated Docs / Dashboards / Exports ===
+/docs/screenshots/
+/images/
+/dashboards/*.json
+/exported-configs/
+*.pdf
+*.csv
+
+# === NodeJS/OpenAPI or NPM ===
+node_modules/
+package-lock.json
+openapi/dist/
+
+# === Jenkins secrets / persistent files ===
+jenkins/secrets/
+jenkins/war/
+jenkins/home/
+jenkins/workspace/
+
+# === Python venv ===
+venv/
+.env/
+.envrc
+
+# === Local Testing Artifacts ===
+*.pid
+*.db
+*.sqlite
+kind-cluster/
+local-backups/
+test-results/
+
+# === Internal Keys or Access Tokens ===
+*.key
+*.pem
+*.crt
+*.pfx
+*.jks

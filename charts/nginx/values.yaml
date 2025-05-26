@@ -1,0 +1,47 @@
+controller:
+  replicaCount: 2
+  service:
+    type: LoadBalancer
+    annotations:
+      networking.gke.io/load-balancer-type: "External"
+      networking.gke.io/external-load-balancer-region: "us-central1"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+  ingressClass: nginx
+  ingressClassResource:
+    name: nginx
+    default: true
+    controllerValue: "k8s.io/ingress-nginx"
+  podLabels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+  nodeSelector:
+    cloud.google.com/gke-preemptible: "true"
+  tolerations:
+  - key: "cloud.google.com/gke-preemptible"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: ingress-nginx
+          topologyKey: kubernetes.io/hostname
+defaultBackend:
+  enabled: true
+  image:
+    repository: registry.k8s.io/defaultbackend-amd64
+    tag: "1.5"
+  nodeSelector:
+    cloud.google.com/gke-preemptible: "true"
+  tolerations:
+  - key: "cloud.google.com/gke-preemptible"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"

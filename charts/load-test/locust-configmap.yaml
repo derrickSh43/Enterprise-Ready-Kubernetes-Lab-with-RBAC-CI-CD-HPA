@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: locustfile
+  namespace: load-test
+data:
+  locustfile.py: |
+    from locust import HttpUser, task, between
+    class SockShopUser(HttpUser):
+        wait_time = between(1, 5)
+        host = "http://34.132.112.236"
+        def on_start(self):
+            self.client.headers.update({"Host": "front-end.example.com"})
+        @task(3)
+        def browse_home(self):
+            self.client.get("/")
+        @task(2)
+        def browse_catalogue(self):
+            self.client.get("/category.html")
+        @task(1)
+        def add_to_cart(self):
+            self.client.get("/cart", params={"id": "1", "qty": 1})
+        @task(1)
+        def login(self):
+            self.client.post("/login", data={"username": "user", "password": "password"})

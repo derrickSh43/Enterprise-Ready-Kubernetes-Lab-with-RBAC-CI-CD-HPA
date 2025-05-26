@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-worker
+  namespace: load-test
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: locust-worker
+  template:
+    metadata:
+      labels:
+        app: locust-worker
+    spec:
+      containers:
+      - name: locust-worker
+        image: locustio/locust:2.29.1
+        args: ["-f", "/mnt/locust/locustfile.py", "--worker", "--master-host=locust-master.load-test.svc.cluster.local"]
+        volumeMounts:
+        - name: locustfile
+          mountPath: /mnt/locust
+        env:
+        - name: LOCUST_LOG_LEVEL
+          value: "INFO"
+      volumes:
+      - name: locustfile
+        configMap:
+          name: locustfile

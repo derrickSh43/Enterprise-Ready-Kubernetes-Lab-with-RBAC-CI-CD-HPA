@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: popeye-scan
+  namespace: dev
+spec:
+  schedule: "0 */6 * * *"  # Every 6 hours
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: popeye
+          containers:
+          - name: popeye
+            image: derailed/popeye
+            args:
+            - -o
+            - standard
+            env:
+            - name: POPEYE_NS
+              value: dev
+          restartPolicy: OnFailure
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
