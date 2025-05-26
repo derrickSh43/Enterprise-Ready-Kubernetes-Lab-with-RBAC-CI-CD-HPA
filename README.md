@@ -18,6 +18,10 @@ This project is a full-stack, production-grade Kubernetes lab built on GKE and d
 | **Cost Awareness** | Preemptible node pools, resource limits, autoscaler + teardown logic                  |
 
 ---
+## 📄 Evidence of Cluster Deployment
+
+See [logs/cleaned_kubectl_dump.txt](logs/cleaned_kubectl_dump.txt) for proof of live GKE deployment across multiple namespaces, including Jenkins, Sock Shop, monitoring stack, and WordPress.
+
 
 ## 🧱 Architecture Overview
 
