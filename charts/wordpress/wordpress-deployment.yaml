@@ -41,7 +41,7 @@ spec:
           volumeMounts:
             - name: wordpress-storage
               mountPath: /var/www/html
-          resources:                           # ✅ Move here
+          resources:                           
             requests:
               cpu: "250m"
               memory: "256Mi"
